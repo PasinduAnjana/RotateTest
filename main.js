@@ -95,7 +95,7 @@ function setupScrollAnim(){
   ScrollTrigger.defaults({
     immediateRender: false,
     ease: "power1.inOut",
-    scrub: .5,
+    scrub: true,
     // markers:true
   });
 
