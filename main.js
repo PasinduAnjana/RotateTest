@@ -58,10 +58,17 @@ loader.load('./public/phoe.glb', (gltf) => {
   scene.add(phoenix);
 
   mixer = new THREE.AnimationMixer(model);
+  const animations=gltf.animations;
 
-  gltf.animations.forEach((clip) => {
-    mixer.clipAction(clip).play();
-  });
+  //   gltf.animations.forEach((clip) => {
+  //   mixer.clipAction(clip).play();
+  // });
+
+  if (animations.length>=3){
+    const thirdAnimationClip = animations[4];
+        const action = mixer.clipAction(thirdAnimationClip);
+        action.play();
+  }
 })
 
 
