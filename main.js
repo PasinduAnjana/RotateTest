@@ -74,24 +74,33 @@ loader.load("./public/phoe.glb", (gltf) => {
 
 const camPositions = {
   section1: { x: -5, y: 0, z: 0 },
-  section2: { x: 7.3, y: -8.9, z: 5.7 },
-  section3: { x: 0, y: 2, z: 0 },
+  section2: { x: 3.3, y: -0.9, z: 0.7 },
+  section3: { x: 0.17, y: -1.8, z: -3.14 },
 };
 const camTargets = {
   section1: { x: 0, y: 2, z: 2.5 },
-  section2: { x: -0.37, y: -0.9, z: 0.8 },
-  section3: { x: 0, y: 2, z: 0 },
+  section2: { x: -0.37, y: 0.9, z: 0.8 },
+  section3: { x: 1, y: -1, z: -0 },
 };
 
 function setupScrollAnim() {
   ScrollTrigger.defaults({
     immediateRender: false,
-    ease: "power1.inOut",
-    scrub: 2,
-    // markers: true,
+    ease: "power1.easeInOut",
+    // scrub: 2,
+    markers: true,
   });
 
-  const tl = gsap.timeline();
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".second",
+      endTrigger: ".fourth",
+      start: "top bottom",
+      end: "top top",
+      // markers:true,
+      scrub: 1,
+    },
+  });
   // target.set(0, 0, 0);
 
   //
@@ -100,13 +109,13 @@ function setupScrollAnim() {
     x: camPositions.section1.x,
     y: camPositions.section1.y,
     z: camPositions.section1.z,
-    scrollTrigger: {
-      trigger: ".second",
-      start: "top bottom",
-      end: "top top",
-      // markers:true,
-      // scrub:2
-    },
+    // scrollTrigger: {
+    //   trigger: ".second",
+    //   start: "top bottom",
+    //   end: "top top",
+    //   // markers:true,
+    //   // scrub:2
+    // },
   })
 
     .to(target, {
@@ -114,65 +123,65 @@ function setupScrollAnim() {
       x: camTargets.section1.x,
       y: camTargets.section1.y,
       z: camTargets.section1.z,
-      scrollTrigger: {
-        trigger: ".second",
-        start: "top bottom",
-        end: "top top",
-        // markers:true,
-        // scrub:2
-      },
+      // scrollTrigger: {
+      //   trigger: ".second",
+      //   start: "top bottom",
+      //   end: "top top",
+      //   // markers:true,
+      //   // scrub:2
+      // },
     })
 
     .to(camPos, {
       x: 3.3,
       y: -0.9,
       z: 0.7,
-      scrollTrigger: {
-        trigger: ".third",
-        start: "top bottom",
-        end: "top top",
-        // markers:true,
-        // scrub:2
-      },
+      // scrollTrigger: {
+      //   trigger: ".third",
+      //   start: "top bottom",
+      //   end: "top top",
+      //   // markers:true,
+      //   // scrub:2
+      // },
     })
 
     .to(target, {
       x: -0.37,
       y: 0.9,
       z: 0.8,
-      scrollTrigger: {
-        trigger: ".third",
-        start: "top bottom",
-        end: "top top",
-        // markers:true,
-        // scrub:2
-      },
+      // scrollTrigger: {
+      //   trigger: ".third",
+      //   start: "top bottom",
+      //   end: "top top",
+      //   // markers:true,
+      //   // scrub:2
+      // },
     })
 
     .to(camPos, {
       x: 0.17,
       y: -1.8,
       z: -3.14,
-      scrollTrigger: {
-        trigger: ".fourth",
-        start: "top bottom",
-        end: "top top",
-        // markers:true,
-        // scrub:2
-      },
+      // scrollTrigger: {
+      //   trigger: ".fourth",
+      //   start: "top bottom",
+      //   end: "top top",
+      //   // markers:true,
+      //   // scrub:2
+      // },
     })
 
     .to(target, {
       x: 1,
       y: -1,
       z: -0,
-      scrollTrigger: {
-        trigger: ".fourth",
-        start: "top bottom",
-        end: "top top",
-        // markers:true,
-        // scrub:2
-      },
+      // scrollTrigger: {
+      //   trigger: ".fourth",
+      //   start: "top bottom",
+      //   end: "top top",
+      //   // markers:true,
+      //   // scrub:2
+      // },
     });
 }
 
