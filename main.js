@@ -14,7 +14,7 @@ const scene = new THREE.Scene();
 
 // Create a camera
 const camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 10;
+camera.position.set(0,0,0);
 
 const camPos=camera.position;
 const target=new THREE.Vector3(0,0,0);
