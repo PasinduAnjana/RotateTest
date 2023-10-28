@@ -72,23 +72,6 @@ loader.load("./public/phoe.glb", (gltf) => {
   }
 });
 
-// Function to update the cube's rotation based on scroll position
-// function updateCubeRotation() {
-//   // Get the scroll position as a value between 0 and 1
-//   // const scrollPosition =
-//   //   window.scrollY / (document.body.scrollHeight - window.innerHeight);
-
-//   const mouseX = (event.clientX / sizes.width) * 2 - 1;
-//   const mouseY = (event.clientY / sizes.height) * 2 - 1;
-
-//   cubeRotation = {
-//     x: mouseY * Math.PI, // Adjust the rotation factor as needed
-//     y: mouseX * Math.PI, // Adjust the rotation factor as needed
-//     z: 0, // You can set this to a fixed value if you don't want rotation around the z-axis
-//   // Update the cube's rotation based on the scroll position
-//   // cubeRotation = scrollPosition * Math.PI * 2; // Adjust the factor as needed
-// }
-
 const camPositions = {
   section1: { x: -5, y: 0, z: 0 },
   section2: { x: 7.3, y: -8.9, z: 5.7 },
@@ -196,7 +179,20 @@ function setupScrollAnim() {
 setupScrollAnim();
 
 // Event listener for the scroll event
-//window.addEventListener("mousemove", updateCubeRotation);
+window.addEventListener("mousemove", onMouseMove);
+
+function onMouseMove(event) {
+  // Calculate the mouse's position in normalized device coordinates
+  const mouseX = (event.clientX / sizes.width) * 2 - 1;
+  const mouseY = (event.clientY / sizes.height) * 2 - 1;
+
+  // Set the model's rotation based on the cursor's position
+  cubeRotation = {
+    x: mouseY * Math.PI, // Adjust the rotation factor as needed
+    y: mouseX * Math.PI, // Adjust the rotation factor as needed
+    z: 0, // You can set this to a fixed value if you don't want rotation around the z-axis
+  };
+}
 
 //resize
 window.addEventListener("resize", () => {
@@ -225,6 +221,16 @@ const animate = () => {
   if (mixer) {
     mixer.update(deltaTime / 2); // Adjust the time delta as needed.
   }
+
+  if (phoenix) {
+    // Rotate the model based on the cursor's position
+    phoenix.rotation.set(
+      cubeRotation.x / 50,
+      cubeRotation.y / 50,
+      cubeRotation.z / 50
+    );
+  }
+
   camera.lookAt(target);
   // console.log(target);
 
