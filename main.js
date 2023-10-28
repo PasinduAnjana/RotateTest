@@ -86,8 +86,8 @@ const camTargets = {
 function setupScrollAnim() {
   ScrollTrigger.defaults({
     immediateRender: false,
-    ease: "power1.easeInOut",
-    // scrub: 2,
+    ease: "power1.inOut",
+    scrub: true,
     markers: true,
   });
 
@@ -98,7 +98,7 @@ function setupScrollAnim() {
       start: "top bottom",
       end: "top top",
       // markers:true,
-      scrub: 1,
+      // scrub: 1,
     },
   });
   // target.set(0, 0, 0);
