@@ -87,7 +87,9 @@ function setupScrollAnim() {
   ScrollTrigger.defaults({
     immediateRender: false,
     ease: "power1.inOut",
-    scrub: true,
+    scrub: 1,
+    fastScrollEnd: true,
+    // preventOverlaps: true,
     // markers: true,
   });
 
