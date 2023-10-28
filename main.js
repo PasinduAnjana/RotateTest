@@ -88,7 +88,7 @@ function setupScrollAnim() {
     immediateRender: false,
     ease: "power1.inOut",
     scrub: 2,
-    markers: true,
+    // markers: true,
   });
 
   const tl = gsap.timeline();
