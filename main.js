@@ -88,7 +88,7 @@ function setupScrollAnim() {
     immediateRender: false,
     ease: "power1.inOut",
     scrub: true,
-    fastScrollEnd: true,
+    // fastScrollEnd: true,
     // preventOverlaps: true,
     // markers: true,
   });
