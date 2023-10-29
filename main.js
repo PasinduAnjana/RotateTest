@@ -181,17 +181,8 @@ function setupScrollAnim() {
 setupScrollAnim();
 
 const lenis = new Lenis({
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-  direction: "vertical", // vertical, horizontal
-  gestureDirection: "vertical", // vertical, horizontal, both
-  smooth: true,
-  mouseMultiplier: 1,
-  smoothTouch: false,
-  infinite: false,
-  lerp: 0.1,
-  wheelMultiplier: 0.7,
-  gestureOrientation: "vertical",
-  normalizeWheel: false,
+  smoothWheel: true,
+  duration: 5,
 });
 
 lenis.on("scroll", (e) => {
