@@ -87,7 +87,7 @@ function setupScrollAnim() {
   ScrollTrigger.defaults({
     immediateRender: false,
     ease: "power1.inOut",
-    scrub: 1,
+    scrub: true,
     fastScrollEnd: true,
     // preventOverlaps: true,
     // markers: true,
@@ -179,6 +179,22 @@ function setupScrollAnim() {
 }
 
 setupScrollAnim();
+
+const lenis = new Lenis({
+  smoothWheel: true,
+  duration: 5,
+});
+
+lenis.on("scroll", (e) => {
+  console.log(e);
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
 
 // Event listener for the scroll event
 window.addEventListener("mousemove", onMouseMove);
