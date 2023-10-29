@@ -186,7 +186,7 @@ const lenis = new Lenis({
 });
 
 lenis.on("scroll", (e) => {
-  console.log(e);
+  // console.log(e);
 });
 
 function raf(time) {
@@ -223,6 +223,10 @@ window.addEventListener("resize", () => {
   camera.updateProjectionMatrix();
   renderer.setSize(sizes.width, sizes.height);
 });
+
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
 
 let clock = new THREE.Clock();
 
