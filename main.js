@@ -3,6 +3,8 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+const loadingContainer = document.getElementById("loading-container");
+
 gsap.registerPlugin(ScrollTrigger);
 
 let cubeRotation = 0;
@@ -70,6 +72,9 @@ loader.load("./public/phoe.glb", (gltf) => {
     const action = mixer.clipAction(thirdAnimationClip);
     action.play();
   }
+
+  // Hide the loading container when the model is loaded.
+  loadingContainer.style.display = "none";
 });
 
 const camPositions = {
