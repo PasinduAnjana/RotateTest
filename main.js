@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 let cubeRotation = 0;
 let phoenix;
+let phoRot;
 
 // Create a scene
 const scene = new THREE.Scene();
@@ -56,6 +57,7 @@ loader.load("./public/phoe.glb", (gltf) => {
   model = gltf.scene;
   phoenix = model;
   phoenix.scale.set(0.3, 0.3, 0.3);
+  phoRot = phoenix.rotation;
   scene.add(phoenix);
 
   mixer = new THREE.AnimationMixer(model);
@@ -70,6 +72,7 @@ loader.load("./public/phoe.glb", (gltf) => {
     const action = mixer.clipAction(thirdAnimationClip);
     action.play();
   }
+  setupScrollAnim();
 });
 
 const camPositions = {
@@ -87,105 +90,27 @@ function setupScrollAnim() {
   ScrollTrigger.defaults({
     immediateRender: false,
     ease: "power1.inOut",
-    scrub: 1,
+    scrub: true,
     markers: true,
   });
 
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".second",
-      endTrigger: ".fourth",
-      start: "top bottom",
-      end: "top top",
+      trigger: ".app",
+      start: "top top",
+      end: "bottom bottom",
+      duration: 10,
       // markers:true,
       // scrub: 1,
     },
   });
-  // target.set(0, 0, 0);
 
-  //
-  tl.to(camPos, {
-    // x:-8.9,y:-.21,z:2.1,
-    x: camPositions.section1.x,
-    y: camPositions.section1.y,
-    z: camPositions.section1.z,
-    // scrollTrigger: {
-    //   trigger: ".second",
-    //   start: "top bottom",
-    //   end: "top top",
-    //   // markers:true,
-    //   // scrub:2
-    // },
-  })
+  tl.to(camPos, { x: 2 });
+  tl.to(camPos, { x: -4 });
 
-    .to(target, {
-      // x:-.6,y:1,z:1.1,
-      x: camTargets.section1.x,
-      y: camTargets.section1.y,
-      z: camTargets.section1.z,
-      // scrollTrigger: {
-      //   trigger: ".second",
-      //   start: "top bottom",
-      //   end: "top top",
-      //   // markers:true,
-      //   // scrub:2
-      // },
-    })
-
-    .to(camPos, {
-      x: 3.3,
-      y: -0.9,
-      z: 0.7,
-      // scrollTrigger: {
-      //   trigger: ".third",
-      //   start: "top bottom",
-      //   end: "top top",
-      //   // markers:true,
-      //   // scrub:2
-      // },
-    })
-
-    .to(target, {
-      x: -0.37,
-      y: 0.9,
-      z: 0.8,
-      // scrollTrigger: {
-      //   trigger: ".third",
-      //   start: "top bottom",
-      //   end: "top top",
-      //   // markers:true,
-      //   // scrub:2
-      // },
-    })
-
-    .to(camPos, {
-      x: 0.17,
-      y: -1.8,
-      z: -3.14,
-      // scrollTrigger: {
-      //   trigger: ".fourth",
-      //   start: "top bottom",
-      //   end: "top top",
-      //   // markers:true,
-      //   // scrub:2
-      // },
-    })
-
-    .to(target, {
-      x: 1,
-      y: -1,
-      z: -0,
-      // scrollTrigger: {
-      //   trigger: ".fourth",
-      //   start: "top bottom",
-      //   end: "top top",
-      //   // markers:true,
-      //   // scrub:2
-      // },
-    });
+  tl.to(camPos, { x: 2 });
+  tl.to(camPos, { x: -1.5 });
 }
-
-setupScrollAnim();
 
 // Event listener for the scroll event
 window.addEventListener("mousemove", onMouseMove);
@@ -223,8 +148,8 @@ const animate = () => {
 
   const deltaTime = clock.getDelta();
   // Update the cube's rotation
-  // if(phoenix){
-  //    phoenix.rotation.y = cubeRotation;
+  // if (phoenix) {
+  //   phoenix.rotation.y = cubeRotation;
   // }
 
   if (mixer) {
