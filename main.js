@@ -90,7 +90,7 @@ function setupScrollAnim() {
   ScrollTrigger.defaults({
     immediateRender: false,
     ease: "power1.inOut",
-    scrub: true,
+    scrub: 1,
     markers: true,
   });
 
@@ -105,11 +105,10 @@ function setupScrollAnim() {
     },
   });
 
-  tl.to(camPos, { x: 2 });
-  tl.to(camPos, { x: -4 });
-
-  tl.to(camPos, { x: 2 });
-  tl.to(camPos, { x: -1.5 });
+  tl.to(camPos, { x: 4, duration: 2 });
+  tl.to(camPos, { x: -4, duration: 3 });
+  tl.to(camPos, { x: 2, duration: 1 });
+  tl.to(camPos, { x: -1.5, duration: 1 });
 }
 
 // Event listener for the scroll event

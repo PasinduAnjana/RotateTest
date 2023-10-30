@@ -22,7 +22,9 @@ body,html{
     flex-wrap: wrap;
 }
 
-
+.second,.fourth{
+  background-color: rgb(49, 49, 49);
+}
 
 .infr{
     position: relative;
