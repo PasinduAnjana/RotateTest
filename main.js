@@ -7,7 +7,7 @@ const loadingContainer = document.getElementById("loading-container");
 
 gsap.registerPlugin(ScrollTrigger);
 
-let cubeRotation = 0;
+let cubeRotation = { x: 0, y: 0, z: 0 };
 let phoenix;
 
 // Create a scene
@@ -49,17 +49,12 @@ var directionalLight2 = new THREE.DirectionalLight(0xffffff, 1); // Color, Inten
 directionalLight2.position.set(-1, -1, -1); // Direction of the light
 scene.add(directionalLight2);
 
-const loadingManager = new THREE.LoadingManager(
-  () => {
-    // Hide the loading container when the model is loaded.
+const loadingManager = new THREE.LoadingManager(() => {
+  // Hide the loading container when the model is loaded.
+  loadingContainer.style.display = "none";
+  console.log("loaded");
+});
 
-    loadingContainer.style.display = "none";
-    console.log("loaded");
-  },
-  (e) => {
-    // console.log(e);
-  }
-);
 const loader = new GLTFLoader(loadingManager);
 
 let model;
