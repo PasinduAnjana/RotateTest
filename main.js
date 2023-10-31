@@ -49,7 +49,18 @@ var directionalLight2 = new THREE.DirectionalLight(0xffffff, 1); // Color, Inten
 directionalLight2.position.set(-1, -1, -1); // Direction of the light
 scene.add(directionalLight2);
 
-const loader = new GLTFLoader();
+const loadingManager = new THREE.LoadingManager(
+  () => {
+    // Hide the loading container when the model is loaded.
+
+    loadingContainer.style.display = "none";
+    console.log("loaded");
+  },
+  (e) => {
+    // console.log(e);
+  }
+);
+const loader = new GLTFLoader(loadingManager);
 
 let model;
 let mixer;
@@ -71,11 +82,6 @@ loader.load("./public/phoe.glb", (gltf) => {
     const thirdAnimationClip = animations[4];
     const action = mixer.clipAction(thirdAnimationClip);
     action.play();
-  }
-
-  // Hide the loading container when the model is loaded.
-  if (phoenix) {
-    loadingContainer.style.display = "none";
   }
 });
 
