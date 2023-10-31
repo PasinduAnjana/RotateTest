@@ -74,7 +74,9 @@ loader.load("./public/phoe.glb", (gltf) => {
   }
 
   // Hide the loading container when the model is loaded.
-  loadingContainer.style.display = "none";
+  if (phoenix) {
+    loadingContainer.style.display = "none";
+  }
 });
 
 const camPositions = {
