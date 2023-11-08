@@ -190,7 +190,7 @@ setupScrollAnim();
 
 const lenis = new Lenis({
   smoothWheel: true,
-  duration: 5,
+  duration: 4,
 });
 
 lenis.on("scroll", (e) => {
