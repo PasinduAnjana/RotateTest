@@ -3,6 +3,13 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import LocomotiveScroll from "locomotive-scroll";
+const scroll = new LocomotiveScroll({
+  el: document.querySelector("[data-scroll-container]"),
+  smooth: true,
+  lerp: 0.05,
+});
+
 const loadingContainer = document.getElementById("loading-container");
 
 gsap.registerPlugin(ScrollTrigger);
@@ -90,6 +97,15 @@ const camTargets = {
   section2: { x: -0.37, y: -0.9, z: 0.8 },
   section3: { x: 0, y: 2, z: 0 },
 };
+
+// scroll.on("scroll", () => {
+//   try {
+//     ScrollTrigger.update();
+//   } catch {}
+// });
+// scroll.on("call", (...args) => {
+//   console.log(args);
+// });
 
 function setupScrollAnim() {
   ScrollTrigger.defaults({
@@ -188,21 +204,21 @@ function setupScrollAnim() {
 
 setupScrollAnim();
 
-const lenis = new Lenis({
-  smoothWheel: true,
-  duration: 4,
-});
+// const lenis = new Lenis({
+//   smoothWheel: true,
+//   duration: 4,
+// });
 
-lenis.on("scroll", (e) => {
-  // console.log(e);
-});
+// lenis.on("scroll", (e) => {
+//   // console.log(e);
+// });
 
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
+// function raf(time) {
+//   lenis.raf(time);
+//   requestAnimationFrame(raf);
+// }
 
-requestAnimationFrame(raf);
+// requestAnimationFrame(raf);
 
 // Event listener for the scroll event
 window.addEventListener("mousemove", onMouseMove);
@@ -261,6 +277,8 @@ const animate = () => {
     );
   }
 
+  ScrollTrigger.refresh();
+  // scroll.update();
   camera.lookAt(target);
   // console.log(target);
 
